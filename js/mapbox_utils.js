@@ -17,24 +17,65 @@ var map = new mapboxgl.Map({
     zoom: 12
 });
 
-// Add the control to the map.
-map.addControl(
-    new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-    })
-);
 
 let marker;
 
-function addGeocoder(geocoder){
+mapEvent();
+
+let geocoder = setGeocoder();
+addGeocodeToMap(geocoder);
 
 
-    // geocoder.on('result', function (event) {
-    //
-    // });
+function setGeocoder(){
 
+    // searchbox for map
+      return new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl,
+            marker: false
+        });
+}
+
+
+function addGeocodeToMap(geocoder){
+
+    map.addControl(geocoder);
+    // display results when search
+    geocoder.on('result', function (event) {
+
+
+        console.log(event);
+        console.log(event.result.geometry.coordinates);
+        console.log(event.result.place_name);
+
+
+       setMarker(event.result.geometry.coordinates).setPopup(displayPopup(event.result.place_name));
+
+    });
 }
 
 
 
+function setMarker(point) {
+
+    if(!marker){
+        marker = new mapboxgl.Marker().setLngLat(point).addTo(map);
+    } else {
+        marker.setLngLat(point);
+    }
+
+}
+
+function mapEvent() {
+
+    map.on('click', function (event) {
+        console.log(event.lngLat);
+        setMarker(event.lngLat);
+    })
+
+}
+
+function displayPopup(textDetails){
+
+    return new mapboxgl.Popup().setHTML(`<p>${textDetails}</p>`).addTo(map);
+}
