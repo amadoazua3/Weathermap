@@ -1,14 +1,9 @@
-
-
-
 // TODO: Create the map, add to #map
 // Create the geocoder and add it how you see fit
 // Set the process for creating/updating/removing markers and popups
 // Create the callback to be used to pass coordinates along to weathermap-utils.js when the response from geocoder endpoint is SUCCESSFUL
 
-const mapboxToken = MAPBOX_TOKEN;
-
-mapboxgl.accessToken = mapboxToken;
+mapboxgl.accessToken = MAPBOX_TOKEN;
 
 var map = new mapboxgl.Map({
     container: 'map',
@@ -17,14 +12,12 @@ var map = new mapboxgl.Map({
     zoom: 12
 });
 
-
 let marker;
 
 mapEvent();
 
 let geocoder = setGeocoder();
 addGeocodeToMap(geocoder);
-
 
 function setGeocoder(){
 
@@ -43,18 +36,15 @@ function addGeocodeToMap(geocoder){
     // display results when search
     geocoder.on('result', function (event) {
 
-
-        console.log(event);
-        console.log(event.result.geometry.coordinates);
         console.log(event.result.place_name);
 
+       setMarker(event.result.geometry.coordinates);
+       marker.setPopup(displayPopup(event.result.place_name));
 
-       setMarker(event.result.geometry.coordinates).setPopup(displayPopup(event.result.place_name));
+       fetchForecast(event.result.geometry.coordinates);
 
     });
 }
-
-
 
 function setMarker(point) {
 
@@ -63,16 +53,15 @@ function setMarker(point) {
     } else {
         marker.setLngLat(point);
     }
-
 }
 
 function mapEvent() {
 
     map.on('click', function (event) {
-        console.log(event.lngLat);
         setMarker(event.lngLat);
-    })
 
+        fetchForecast([event.lngLat.lng, event.lngLat.lat]);
+    })
 }
 
 function displayPopup(textDetails){
