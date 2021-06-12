@@ -12,7 +12,7 @@ function fetchForecast(coordinates) {
 
             console.log("SUCCESSFUL");
             console.log(data);
-
+            weatherData();
         }
     });
 }
