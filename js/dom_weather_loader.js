@@ -10,9 +10,10 @@ function buildDOMObjects(forecastData){
         let max = forecastData[i].main.temp_max;
         let low = forecastData[i].main.temp_min;
         let des = forecastData[i].weather[0].description;
+        let timeDate = forecastData[i].dt_txt;
 
         $('#forecast-container').append(`
-<div class=“card” style=“width: 18rem;“>
+<div class=“card” style=“width: 18em“>
         <div class=“card-body”>
             <h5 class=“card-title”>Card title</h5>
             <p class=“card-text”> ${temp}
@@ -25,6 +26,7 @@ function buildDOMObjects(forecastData){
             <br>
             low bru: ${low}
             <br>
+            ${timeDate}
             </p>
         </div>
 </div> `)
