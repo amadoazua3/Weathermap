@@ -1,6 +1,12 @@
-function buildDOMObjects(forecastData){
+function buildDOMObjects(forecastData, location){
+
+    $('#forecast-container').html('');
+    $('#city').html('');
 
     console.log(forecastData);
+    console.log(location);
+
+    let city = location.name;
 
     for (let i = 0; i < forecastData.length; i++) {
 
@@ -10,27 +16,37 @@ function buildDOMObjects(forecastData){
         let max = forecastData[i].main.temp_max;
         let low = forecastData[i].main.temp_min;
         let des = forecastData[i].weather[0].description;
-        let timeDate = forecastData[i].dt_txt;
+
+        let timeDate = forecastData[i].dt;
+        // console.log(timeDate);
+        timeDate = new Date(timeDate * 1000);
+        let formattedTime = new Date(timeDate).toDateString();
+        // console.log(formattedTime);
+
+
 
         $('#forecast-container').append(`
-<div class=“card” style=“width: 18em“>
+<div class="card col-2" style="width: 18em">
         <div class=“card-body”>
-            <h5 class=“card-title”>Card title</h5>
+            <h5 class=“card-title”>${formattedTime}</h5>
             <p class=“card-text”> ${temp}
             <br>
             ${des}
             <br>
             it feels like ${feels}
             <br>
-            high bru: ${max}
+            high: ${max}
             <br>
-            low bru: ${low}
+            low: ${low}
             <br>
-            ${timeDate}
             </p>
         </div>
 </div> `)
     }
 
+    $('#city').append(`<h3 class="text-center">The weather in: ${city}</h3>`)
 
 }
+
+
+

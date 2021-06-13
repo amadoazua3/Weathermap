@@ -11,8 +11,7 @@ function fetchForecast(coordinates) {
 
         },
         success: function (data) {
-
-            buildDOMObjects(filterWeatherObjects(data));
+            buildDOMObjects(filterWeatherObjects(data), filterLocation(data));
         }
     });
 }
@@ -28,4 +27,10 @@ function filterWeatherObjects(data) {
         }
     }
     return arr;
+}
+
+function filterLocation(data) {
+
+    return data.city;
+
 }

@@ -1,8 +1,3 @@
-// TODO: Create the map, add to #map
-// Create the geocoder and add it how you see fit
-// Set the process for creating/updating/removing markers and popups
-// Create the callback to be used to pass coordinates along to weathermap-utils.js when the response from geocoder endpoint is SUCCESSFUL
-
 mapboxgl.accessToken = MAPBOX_TOKEN;
 
 var map = new mapboxgl.Map({
@@ -37,6 +32,7 @@ function addGeocodeToMap(geocoder){
     geocoder.on('result', function (event) {
 
         console.log(event.result.place_name);
+        console.log(event);
 
        setMarker(event.result.geometry.coordinates);
        marker.setPopup(displayPopup(event.result.place_name));
@@ -58,6 +54,7 @@ function setMarker(point) {
 function mapEvent() {
 
     map.on('click', function (event) {
+
         setMarker(event.lngLat);
 
         fetchForecast([event.lngLat.lng, event.lngLat.lat]);
