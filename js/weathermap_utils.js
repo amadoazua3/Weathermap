@@ -6,13 +6,26 @@ function fetchForecast(coordinates) {
         data: {
             APPID: OPEN_WEATHERMAP_TOKEN,
             lat: coordinates[1],
-            lon: coordinates[0]
+            lon: coordinates[0],
+            units: "imperial",
+
         },
         success: function (data) {
 
-            console.log("SUCCESSFUL");
-            console.log(data);
-            weatherData();
+            buildDOMObjects(filterWeatherObjects(data));
         }
     });
+}
+
+function filterWeatherObjects(data) {
+
+    let arr = [];
+
+    for(let i = 0; i < data.list.length; i++){
+
+        if(i % 8 === 0){
+            arr.push(data.list[i]);
+        }
+    }
+    return arr;
 }
