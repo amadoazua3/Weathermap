@@ -2,9 +2,33 @@ function buildDOMObjects(forecastData){
 
     console.log(forecastData);
 
+    for (let i = 0; i < forecastData.length; i++) {
 
-// use jquery and use a for each to iterate through and build a new card for each day
 
+        let temp = forecastData[i].main.temp;
+        let feels = forecastData[i].main.feels_like;
+        let max = forecastData[i].main.temp_max;
+        let low = forecastData[i].main.temp_min;
+        let des = forecastData[i].weather[0].description;
+
+        $('#forecast-container').append(`
+<div class=“card” style=“width: 18rem;“>
+        <div class=“card-body”>
+            <h5 class=“card-title”>Card title</h5>
+            <p class=“card-text”> ${temp}
+            <br>
+            ${des}
+            <br>
+            it feels like ${feels}
+            <br>
+            high bru: ${max}
+            <br>
+            low bru: ${low}
+            <br>
+            </p>
+        </div>
+</div> `)
+    }
 
 
 }
