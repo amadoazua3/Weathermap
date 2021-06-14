@@ -38,7 +38,7 @@ function renderCards(forecastData) {
     $('#forecast-container').append(`
 <div class="card col-2 mx-5" >
         <div class=“card-body”>
-            <h5 class=“card-title”>${formattedTime}</h5>
+            <p class=“card-title”>${formattedTime}</p>
             <p class=“card-text”> <hr>${temp}
             <hr>
             ${des}
