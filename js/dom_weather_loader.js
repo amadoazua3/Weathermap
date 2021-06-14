@@ -2,15 +2,12 @@ function buildDOMObjects(forecastData, location){
 
     $('#forecast-container').html('');
 
-    // console.log(forecastData);
-    // console.log(location);
-
     $('#city').html('');
     let city = location.name;
 
     $('#city').append(`<h3 class="text-center pb-4 pt-5">The weather in: ${city}</h3>`)
 
-        renderCards(forecastData);
+    renderCards(forecastData);
 }
 
 
@@ -21,13 +18,12 @@ function renderCards(forecastData) {
         let feels = forecastData[i].main.feels_like;
         let max = forecastData[i].main.temp_max;
         let low = forecastData[i].main.temp_min;
-        let des = forecastData[i].weather[0].description;
+
+        let iconCode = forecastData[i].weather[0].icon;
 
         let timeDate = forecastData[i].dt;
-        // console.log(timeDate);
         timeDate = new Date(timeDate * 1000);
         let formattedTime = new Date(timeDate).toDateString();
-        // console.log(formattedTime);
 
     $('#forecast-container').append(`
 <div class="card col-2 mx-5" >
@@ -35,7 +31,7 @@ function renderCards(forecastData) {
             <p class=“card-title”>${formattedTime}</p>
             <p class=“card-text”> <hr>${temp}
             <hr>
-            ${des}
+            <img src="http://openweathermap.org/img/w/${iconCode}.png"/>
             <hr>
             it feels like ${feels}
             <hr>
