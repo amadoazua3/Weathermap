@@ -2,20 +2,15 @@ function buildDOMObjects(forecastData, location){
 
     $('#forecast-container').html('');
 
-    console.log(forecastData);
-    console.log(location);
+    // console.log(forecastData);
+    // console.log(location);
 
     $('#city').html('');
     let city = location.name;
 
     $('#city').append(`<h3 class="text-center pb-4 pt-5">The weather in: ${city}</h3>`)
 
-
-
-
-
         renderCards(forecastData);
-
 }
 
 
@@ -33,7 +28,6 @@ function renderCards(forecastData) {
         timeDate = new Date(timeDate * 1000);
         let formattedTime = new Date(timeDate).toDateString();
         // console.log(formattedTime);
-
 
     $('#forecast-container').append(`
 <div class="card col-2 mx-5" >
@@ -54,11 +48,11 @@ function renderCards(forecastData) {
 
 }
 
-
 }
 
 $(document).ready(function (event) {
     $('body').css('background-color', '#ecf0f1');
+    $('#nav').css('background-color', '#9b59b6');
 })
 
 
