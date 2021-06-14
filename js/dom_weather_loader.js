@@ -29,15 +29,15 @@ function renderCards(forecastData) {
 <div class="card col-2 mx-5" >
         <div class=“card-body”>
             <p class=“card-title”>${formattedTime}</p>
-            <p class=“card-text”> <hr>${temp}
+            <p class=“card-text”> <hr> Currently: ${temp}
             <hr>
             <img src="http://openweathermap.org/img/w/${iconCode}.png"/>
             <hr>
-            it feels like ${feels}
+            It feels like ${feels}
             <hr>
-            high: ${max}
+            High: ${max}
             <hr>
-            low: ${low}
+            Low: ${low}
             </p>
         </div>
 </div> `)
