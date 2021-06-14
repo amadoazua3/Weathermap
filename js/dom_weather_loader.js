@@ -15,10 +15,11 @@ function renderCards(forecastData) {
     for (let i = 0; i < forecastData.length; i++) {
 
         let temp = forecastData[i].main.temp;
+        console.log(forecastData[i].main.temp);
         let feels = forecastData[i].main.feels_like;
         let max = forecastData[i].main.temp_max;
         let low = forecastData[i].main.temp_min;
-
+        let desc = forecastData[i].weather[0].description;
         let iconCode = forecastData[i].weather[0].icon;
 
         let timeDate = forecastData[i].dt;
@@ -29,15 +30,16 @@ function renderCards(forecastData) {
 <div class="card col-2 mx-5" >
         <div class=“card-body”>
             <p class=“card-title”>${formattedTime}</p>
-            <p class=“card-text”> <hr> Currently: ${temp}
+            <p class=“card-text”> <hr> Currently: ${Math.round(temp)}˚F
             <hr>
-            <img src="http://openweathermap.org/img/w/${iconCode}.png"/>
+            <img src="http://openweathermap.org/img/w/${iconCode}.png"/><br>
+            ${desc}
             <hr>
-            It feels like ${feels}
+            It feels like ${Math.round(feels)}˚F
             <hr>
-            High: ${max}
+            High: ${Math.round(max)}˚F
             <hr>
-            Low: ${low}
+            Low: ${Math.round(low)}˚F
             </p>
         </div>
 </div> `)
