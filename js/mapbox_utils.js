@@ -2,7 +2,7 @@ mapboxgl.accessToken = MAPBOX_TOKEN;
 
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/dark-v10',
+    style: 'mapbox://styles/mapbox/streets-v11',
     center: [-95.3698, 29.7604],
     zoom: 12
 });

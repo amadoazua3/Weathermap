@@ -15,7 +15,6 @@ function renderCards(forecastData) {
     for (let i = 0; i < forecastData.length; i++) {
 
         let temp = forecastData[i].main.temp;
-        console.log(forecastData[i].main.temp);
         let feels = forecastData[i].main.feels_like;
         let max = forecastData[i].main.temp_max;
         let low = forecastData[i].main.temp_min;
