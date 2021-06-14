@@ -7,6 +7,8 @@ var map = new mapboxgl.Map({
     zoom: 12
 });
 
+
+
 let marker;
 
 mapEvent();
@@ -28,6 +30,7 @@ function setGeocoder(){
 function addGeocodeToMap(geocoder){
 
     map.addControl(geocoder);
+
     // display results when search
     geocoder.on('result', function (event) {
 

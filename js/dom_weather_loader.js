@@ -1,15 +1,26 @@
 function buildDOMObjects(forecastData, location){
 
     $('#forecast-container').html('');
-    $('#city').html('');
 
     console.log(forecastData);
     console.log(location);
 
+    $('#city').html('');
     let city = location.name;
 
-    for (let i = 0; i < forecastData.length; i++) {
+    $('#city').append(`<h3 class="text-center pb-4 pt-5">The weather in: ${city}</h3>`)
 
+
+
+
+
+        renderCards(forecastData);
+
+}
+
+
+function renderCards(forecastData) {
+    for (let i = 0; i < forecastData.length; i++) {
 
         let temp = forecastData[i].main.temp;
         let feels = forecastData[i].main.feels_like;
@@ -24,29 +35,30 @@ function buildDOMObjects(forecastData, location){
         // console.log(formattedTime);
 
 
-
-        $('#forecast-container').append(`
-<div class="card col-2" style="width: 18em">
+    $('#forecast-container').append(`
+<div class="card col-2 mx-5" >
         <div class=“card-body”>
             <h5 class=“card-title”>${formattedTime}</h5>
-            <p class=“card-text”> ${temp}
-            <br>
+            <p class=“card-text”> <hr>${temp}
+            <hr>
             ${des}
-            <br>
+            <hr>
             it feels like ${feels}
-            <br>
+            <hr>
             high: ${max}
-            <br>
+            <hr>
             low: ${low}
-            <br>
             </p>
         </div>
 </div> `)
-    }
-
-    $('#city').append(`<h3 class="text-center">The weather in: ${city}</h3>`)
 
 }
 
+
+}
+
+$(document).ready(function (event) {
+    $('body').css('background-color', '#ecf0f1');
+})
 
 
