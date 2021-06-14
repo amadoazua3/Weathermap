@@ -49,7 +49,8 @@ function renderCards(forecastData) {
 
 $(document).ready(function (event) {
     $('body').css('background-color', '#ecf0f1');
-    $('#nav').css('background-color', '#9b59b6');
+    // $('body').css('background-color', '#f1f2f6');
+    $('#nav').css('background-color', '#d63031');
 })
 
 
